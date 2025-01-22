@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .input {
+    @apply rounded-md border border-primary bg-background p-2;
+  }
+
+  .button {
+    @apply rounded-md bg-primary p-2 text-background;
+  }
+}
