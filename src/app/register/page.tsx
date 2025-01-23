@@ -10,61 +10,78 @@ export default function Register() {
 
   return (
     <>
-      <h1 className="mb-4 text-3xl font-bold">Register</h1>
+      <h1>Register</h1>
 
       {state ? (
-        <QRCode
-          value={state}
-          bgColor="#fdf8ee"
-          className="mx-auto mt-8 w-4/5"
-        />
+        <QRCode value={state} bgColor="#fdf8ee" className="mx-auto mt-8" />
       ) : (
         <form action={action} className="flex flex-col">
-          <label htmlFor="first">First Name</label>
+          <label htmlFor="firstName">First Name</label>
           <input
-            id="first"
-            name="first"
+            id="firstName"
+            name="firstName"
             required
             placeholder="First Name"
             className="input mb-2"
           />
 
-          <label htmlFor="last">Last Name</label>
+          <label htmlFor="fatherName">Father's Name</label>
           <input
-            id="last"
-            name="last"
+            id="fatherName"
+            name="fatherName"
             required
-            placeholder="Last Name"
+            placeholder="Father's Name"
             className="input mb-2"
           />
 
-          <label htmlFor="phone">Phone Number</label>
+          <label htmlFor="grandfatherName">Grandfather's Name</label>
           <input
-            id="phone"
-            name="phone"
+            id="grandfatherName"
+            name="grandfatherName"
+            required
+            placeholder="Grandfather's Name"
+            className="input mb-2"
+          />
+
+          <label htmlFor="phoneNumber">Phone Number</label>
+          <input
+            id="phoneNumber"
+            name="phoneNumber"
             required
             placeholder="Phone Number"
             className="input mb-2"
           />
 
-          <label htmlFor="type">ID Type</label>
+          <label htmlFor="organization">Organization</label>
           <select
-            id="type"
-            name="type"
-            required
-            className="input mb-2 h-[42px]"
+            id="organization"
+            name="organization"
+            className="input mb-2 h-[44px]"
           >
-            <option value="kebele">Kebele</option>
-            <option value="passport">Passport</option>
-            <option value="license">License</option>
+            <option>Addis Ababa University</option>
+            <option>Addis Ababa Institute of Technology</option>
           </select>
 
-          <label htmlFor="number">ID Number</label>
+          <label htmlFor="documentType">Document Type</label>
+          <select
+            id="documentType"
+            name="documentType"
+            className="input mb-2 h-[44px]"
+          >
+            <option>Driver's License</option>
+            <option>Passport</option>
+            <option>Kebele</option>
+            <option>Employee ID</option>
+            <option>School ID</option>
+            <option>Ministry of Foreign Affairs ID</option>
+          </select>
+
+          <label htmlFor="documentNumber">Document Number</label>
           <input
-            id="number"
-            name="number"
+            id="documentNumber"
+            name="documentNumber"
             required
-            placeholder="ID Number"
+            placeholder="Document Number"
             className="input mb-4"
           />
 

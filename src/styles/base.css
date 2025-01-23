@@ -1,19 +1,23 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-foreground: oklch(19.26% 0.0308 83.24);
+  --color-background: oklch(98.03% 0.0142 84.58);
+  --color-primary: oklch(72.37% 0.1441 69.28);
+}
 
 @layer base {
-  body {
-    @apply bg-background text-foreground;
+  h1 {
+    @apply mb-4 text-4xl font-bold;
   }
 }
 
 @layer components {
   .input {
-    @apply rounded-md border border-primary bg-background p-2;
+    @apply border-primary bg-background rounded border-2 p-2;
   }
 
   .button {
-    @apply rounded-md bg-primary p-2 text-background;
+    @apply bg-primary text-background rounded p-2;
   }
 }
