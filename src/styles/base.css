@@ -18,6 +18,6 @@
   }
 
   .button {
-    @apply bg-primary text-background rounded p-2;
+    @apply bg-primary text-background cursor-pointer rounded p-2;
   }
 }

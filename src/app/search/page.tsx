@@ -1,5 +1,5 @@
-import { capitalize } from "@/utils/client"
 import { protect } from "@/utils/server"
+import Form from "./Form"
 
 export default async function Search() {
   await protect()
@@ -7,7 +7,7 @@ export default async function Search() {
   return (
     <>
       <h1>Search</h1>
-      <p>{capitalize("test capitalize")}</p>
+      <Form />
     </>
   )
 }

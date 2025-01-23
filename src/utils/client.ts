@@ -1,2 +1,2 @@
-export const capitalize = (str: string) =>
-  str.replace(/\b\w/g, (char) => char.toUpperCase())
+export const cap = (word: string) =>
+  word.charAt(0).toUpperCase() + word.slice(1)

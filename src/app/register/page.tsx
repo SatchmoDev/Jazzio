@@ -13,7 +13,11 @@ export default function Register() {
       <h1>Register</h1>
 
       {state ? (
-        <QRCode value={state} bgColor="#fdf8ee" className="mx-auto mt-8" />
+        <QRCode
+          value={"https://habinout.vercel.app/member/" + state}
+          bgColor="#fdf8ee"
+          className="mx-auto mt-8"
+        />
       ) : (
         <form action={action} className="flex flex-col">
           <label htmlFor="firstName">First Name</label>
@@ -47,6 +51,7 @@ export default function Register() {
           <input
             id="phoneNumber"
             name="phoneNumber"
+            pattern="(9|7)\d{8}"
             required
             placeholder="Phone Number"
             className="input mb-2"
@@ -74,6 +79,7 @@ export default function Register() {
             <option>Employee ID</option>
             <option>School ID</option>
             <option>Ministry of Foreign Affairs ID</option>
+            <option>Temporary Residence ID</option>
           </select>
 
           <label htmlFor="documentNumber">Document Number</label>
