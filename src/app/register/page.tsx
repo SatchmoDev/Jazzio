@@ -25,7 +25,7 @@ export default function Register() {
             className="input mb-2"
           />
 
-          <label htmlFor="fatherName">Father's Name</label>
+          <label htmlFor="fatherName">Father&apos;s Name</label>
           <input
             id="fatherName"
             name="fatherName"
@@ -34,7 +34,7 @@ export default function Register() {
             className="input mb-2"
           />
 
-          <label htmlFor="grandfatherName">Grandfather's Name</label>
+          <label htmlFor="grandfatherName">Grandfather&apos;s Name</label>
           <input
             id="grandfatherName"
             name="grandfatherName"
@@ -68,7 +68,7 @@ export default function Register() {
             name="documentType"
             className="input mb-2 h-[44px]"
           >
-            <option>Driver's License</option>
+            <option>Driver&apos;s License</option>
             <option>Passport</option>
             <option>Kebele</option>
             <option>Employee ID</option>

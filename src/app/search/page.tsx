@@ -1,3 +1,4 @@
+import { capitalize } from "@/utils/client"
 import { protect } from "@/utils/server"
 
 export default async function Search() {
@@ -6,6 +7,7 @@ export default async function Search() {
   return (
     <>
       <h1>Search</h1>
+      <p>{capitalize("test capitalize")}</p>
     </>
   )
 }
