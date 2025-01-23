@@ -12,7 +12,7 @@ export default function SignIn() {
 
   return (
     <>
-      <h1>SignIn</h1>
+      <h1>Sign In</h1>
 
       <form
         onSubmit={async (e) => {
@@ -22,16 +22,28 @@ export default function SignIn() {
             async ({ user }) => createCookie(await user.getIdToken()),
           )
         }}
+        className="flex flex-col"
       >
+        <label htmlFor="email">Email</label>
         <input
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="input"
+          id="email"
+          type="email"
+          required
+          placeholder="Email"
+          className="input mb-2"
         />
+
+        <label htmlFor="password">Password</label>
         <input
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="input"
+          id="password"
+          type="password"
+          required
+          placeholder="Password"
+          className="input mb-4"
         />
 
         <Pending />

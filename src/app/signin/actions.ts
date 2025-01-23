@@ -2,6 +2,7 @@
 
 import { auth } from "@/lib/admin"
 import { cookies } from "next/headers"
+import { redirect } from "next/navigation"
 
 export const createCookie = async (token: string) => {
   const store = await cookies()
@@ -17,4 +18,6 @@ export const createCookie = async (token: string) => {
     maxAge: age,
     sameSite: "strict",
   })
+
+  redirect("/search")
 }
