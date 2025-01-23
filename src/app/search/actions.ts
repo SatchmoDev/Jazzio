@@ -1,7 +1,7 @@
 "use server"
 
 import { db } from "@/lib/firebase"
-import { collection, getDocs, query, where } from "firebase/firestore"
+import { collection, getDocs, limit, query, where } from "firebase/firestore"
 
 export const readMembers = async (
   state: { docs: { id: string }[]; fd: FormData },
@@ -41,7 +41,7 @@ export const readMembers = async (
   }
 
   const { docs } = await getDocs(
-    query(collection(db, "members"), ...conditions),
+    query(collection(db, "members"), ...conditions, limit(25)),
   )
 
   return { docs: docs.map((doc) => ({ id: doc.id, ...doc.data() })), fd }

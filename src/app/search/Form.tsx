@@ -46,13 +46,12 @@ export default function Form() {
         <Pending />
       </form>
 
-      <div className="mt-4 flex flex-col gap-4">
-        {/* With ID in type */}
+      <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {state.docs.map((doc: DocumentData) => {
           return (
             <Link
               href={"/member/" + doc.id}
-              className="border-primary flex justify-around rounded border-2 p-2"
+              className="border-primary rounded border-2 p-2"
               key={doc.id}
             >
               <p>
