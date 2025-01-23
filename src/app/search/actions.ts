@@ -19,7 +19,7 @@ export const readMembers = async (
       where("firstName", "<", firstName.toLowerCase() + "\u5000"),
     )
   } else {
-    conditions.push(where("first", ">=", ""))
+    conditions.push(where("firstName", ">=", ""))
   }
 
   if (fatherName) {
