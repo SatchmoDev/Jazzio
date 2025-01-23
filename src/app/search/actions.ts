@@ -3,7 +3,10 @@
 import { db } from "@/lib/firebase"
 import { collection, getDocs, query, where } from "firebase/firestore"
 
-export const readMembers = async (state: any, fd: FormData) => {
+export const readMembers = async (
+  state: { docs: { id: string }[]; fd: FormData },
+  fd: FormData,
+) => {
   const { firstName, fatherName, phoneNumber } = Object.fromEntries(fd) as {
     [k: string]: string
   }

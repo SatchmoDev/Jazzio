@@ -2,6 +2,7 @@
 
 import Pending from "@/components/Pending"
 import { cap } from "@/utils/client"
+import { DocumentData } from "firebase/firestore"
 import Link from "next/link"
 import { useActionState } from "react"
 import { readMembers } from "./actions"
@@ -46,7 +47,8 @@ export default function Form() {
       </form>
 
       <div className="mt-4 flex flex-col gap-4">
-        {state.docs.map((doc: any) => {
+        {/* With ID in type */}
+        {state.docs.map((doc: DocumentData) => {
           return (
             <Link
               href={"/member/" + doc.id}
