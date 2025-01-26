@@ -1,7 +1,8 @@
 import { db } from "@/lib/firebase"
 import { cap } from "@/utils/client"
 import { protect } from "@/utils/server"
-import { doc, getDoc } from "firebase/firestore"
+import { addDoc, collection, doc, getDoc } from "firebase/firestore"
+import { redirect } from "next/navigation"
 
 interface Props {
   params: Promise<{ id: string }>
@@ -20,6 +21,7 @@ export default async function Member({ params }: Props) {
     phoneNumber,
     documentType,
     documentNumber,
+    dateOfBirth,
   } = document.data()!
 
   return (
@@ -32,6 +34,23 @@ export default async function Member({ params }: Props) {
       <p>
         {documentType}: {documentNumber}
       </p>
+      <p>Date of Birth: {dateOfBirth}</p>
+
+      <button
+        onClick={async () => {
+          "use server"
+
+          await addDoc(collection(db, "visits"), {
+            user: id,
+            timestamp: Date.now(),
+          })
+
+          redirect("/search")
+        }}
+        className="button mt-4"
+      >
+        Sign In
+      </button>
     </>
   )
 }

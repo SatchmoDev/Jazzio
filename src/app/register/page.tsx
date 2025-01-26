@@ -88,6 +88,16 @@ export default function Register() {
             name="documentNumber"
             required
             placeholder="Document Number"
+            className="input mb-2"
+          />
+
+          <label htmlFor="dateOfBirth">Date of Birth</label>
+          <input
+            id="dateOfBirth"
+            name="dateOfBirth"
+            type="date"
+            required
+            placeholder="Date of Birth"
             className="input mb-4"
           />
 
