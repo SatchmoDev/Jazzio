@@ -2,7 +2,7 @@ import "@/styles/base.css"
 import { Metadata } from "next"
 import { ReactNode } from "react"
 
-export const metadata: Metadata = { title: "Habinout" }
+export const metadata: Metadata = { title: "Jazzio" }
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (

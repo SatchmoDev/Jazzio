@@ -21,32 +21,32 @@ export default function Register() {
         />
       ) : (
         <form action={action} className="flex flex-col">
-          <label htmlFor="firstName">
+          <label htmlFor="nameFirst">
             First Name (ስም) <Asterisk />
           </label>
           <input
-            id="firstName"
-            name="firstName"
+            id="nameFirst"
+            name="nameFirst"
             required
             className="input mb-2"
           />
 
-          <label htmlFor="fatherName">
+          <label htmlFor="nameFather">
             Father&apos;s Name (የአባት ስም) <Asterisk />
           </label>
           <input
-            id="fatherName"
-            name="fatherName"
+            id="nameFather"
+            name="nameFather"
             required
             className="input mb-2"
           />
 
-          <label htmlFor="grandfatherName">
+          <label htmlFor="nameGrandfather">
             Grandfather&apos;s Name (የአያት ስም) <Asterisk />
           </label>
           <input
-            id="grandfatherName"
-            name="grandfatherName"
+            id="nameGrandfather"
+            name="nameGrandfather"
             required
             className="input mb-2"
           />
@@ -58,6 +58,17 @@ export default function Register() {
             id="phoneNumber"
             name="phoneNumber"
             pattern="(9|7)\d{8}"
+            required
+            className="input mb-2"
+          />
+
+          <label htmlFor="email">
+            Email () <Asterisk />
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
             required
             className="input mb-2"
           />
@@ -78,12 +89,12 @@ export default function Register() {
 
           {other && (
             <>
-              <label htmlFor="organizationName">
+              <label htmlFor="organizationCustom">
                 Organization Name (የተቋም ስም) <Asterisk />
               </label>
               <input
-                id="organizationName"
-                name="organizationName"
+                id="organizationCustom"
+                name="organizationCustom"
                 required
                 className="input mb-2"
               />
