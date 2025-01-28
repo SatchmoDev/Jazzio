@@ -1,7 +1,15 @@
 import { db } from "@/lib/firebase"
 import { cap } from "@/utils/client"
 import { protect } from "@/utils/server"
-import { addDoc, collection, doc, getDoc } from "firebase/firestore"
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore"
 import { redirect } from "next/navigation"
 
 interface Props {
@@ -19,9 +27,10 @@ export default async function Member({ params }: Props) {
     fatherName,
     grandfatherName,
     phoneNumber,
-    documentType,
-    documentNumber,
+    idType,
+    idNumber,
     dateOfBirth,
+    gender,
   } = document.data()!
 
   return (
@@ -32,17 +41,27 @@ export default async function Member({ params }: Props) {
 
       <p>Phone Number: {phoneNumber}</p>
       <p>
-        {documentType}: {documentNumber}
+        {idType}: {idNumber}
       </p>
       <p>Date of Birth: {dateOfBirth}</p>
+      <p>Gender: {gender}</p>
 
       <button
         onClick={async () => {
           "use server"
 
+          const events = await getDocs(
+            query(
+              collection(db, "events"),
+              where("start", ">=", Date.now() - 1800000),
+              where("start", "<=", Date.now() + 1800000),
+            ),
+          )
+
           await addDoc(collection(db, "visits"), {
-            user: id,
+            member: id,
             timestamp: Date.now(),
+            event: events.empty ? "" : events.docs[0].id,
           })
 
           redirect("/search")
