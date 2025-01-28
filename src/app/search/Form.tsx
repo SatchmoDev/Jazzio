@@ -21,7 +21,6 @@ export default function Form() {
           id="firstName"
           name="firstName"
           defaultValue={(state.fd.get("firstName") || "") as string}
-          placeholder="First Name"
           className="input mb-2"
         />
 
@@ -30,7 +29,6 @@ export default function Form() {
           id="fatherName"
           name="fatherName"
           defaultValue={(state.fd.get("fatherName") || "") as string}
-          placeholder="Father's Name"
           className="input mb-2"
         />
 
@@ -39,7 +37,6 @@ export default function Form() {
           id="phoneNumber"
           name="phoneNumber"
           defaultValue={(state.fd.get("phoneNumber") || "") as string}
-          placeholder="Phone Number"
           className="input mb-4"
         />
 

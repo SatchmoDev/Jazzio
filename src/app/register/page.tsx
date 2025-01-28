@@ -1,12 +1,13 @@
 "use client"
 
 import Pending from "@/components/Pending"
-import { useActionState } from "react"
+import { useActionState, useState } from "react"
 import QRCode from "react-qr-code"
 import { createMember } from "./actions"
 
 export default function Register() {
   const [state, action] = useActionState(createMember, "")
+  const [other, setOther] = useState(false)
 
   return (
     <>
@@ -20,59 +21,79 @@ export default function Register() {
         />
       ) : (
         <form action={action} className="flex flex-col">
-          <label htmlFor="firstName">First Name</label>
+          <label htmlFor="firstName">
+            First Name (ስም) <Asterisk />
+          </label>
           <input
             id="firstName"
             name="firstName"
             required
-            placeholder="First Name"
             className="input mb-2"
           />
 
-          <label htmlFor="fatherName">Father&apos;s Name</label>
+          <label htmlFor="fatherName">
+            Father&apos;s Name (የአባት ስም) <Asterisk />
+          </label>
           <input
             id="fatherName"
             name="fatherName"
             required
-            placeholder="Father's Name"
             className="input mb-2"
           />
 
-          <label htmlFor="grandfatherName">Grandfather&apos;s Name</label>
+          <label htmlFor="grandfatherName">
+            Grandfather&apos;s Name (የአያት ስም) <Asterisk />
+          </label>
           <input
             id="grandfatherName"
             name="grandfatherName"
             required
-            placeholder="Grandfather's Name"
             className="input mb-2"
           />
 
-          <label htmlFor="phoneNumber">Phone Number</label>
+          <label htmlFor="phoneNumber">
+            Phone Number (ስልክ ቁጥር) <Asterisk />
+          </label>
           <input
             id="phoneNumber"
             name="phoneNumber"
             pattern="(9|7)\d{8}"
             required
-            placeholder="Phone Number"
             className="input mb-2"
           />
 
-          <label htmlFor="organization">Organization</label>
+          <label htmlFor="organization">
+            Organization (የስራ ቦታ) <Asterisk />
+          </label>
           <select
             id="organization"
             name="organization"
             className="input mb-2 h-[44px]"
+            onChange={(e) => setOther(e.target.value === "Other")}
           >
             <option>Addis Ababa University</option>
             <option>Addis Ababa Institute of Technology</option>
+            <option>Other</option>
           </select>
 
-          <label htmlFor="documentType">Document Type</label>
-          <select
-            id="documentType"
-            name="documentType"
-            className="input mb-2 h-[44px]"
-          >
+          {other && (
+            <>
+              <label htmlFor="organizationName">
+                Organization Name (የተቋም ስም) <Asterisk />
+              </label>
+              <input
+                id="organizationName"
+                name="organizationName"
+                required
+                className="input mb-2"
+              />
+            </>
+          )}
+
+          <label htmlFor="idType">
+            ID Type (የመታወቂያ አይነት) <Asterisk />
+          </label>
+          <select id="idType" name="idType" className="input mb-2 h-[44px]">
             <option>Driver&apos;s License</option>
             <option>Passport</option>
             <option>Kebele</option>
@@ -82,24 +103,34 @@ export default function Register() {
             <option>Temporary Residence ID</option>
           </select>
 
-          <label htmlFor="documentNumber">Document Number</label>
+          <label htmlFor="idNumber">
+            ID Number (የመታወቂያ ቁጥር) <Asterisk />
+          </label>
           <input
-            id="documentNumber"
-            name="documentNumber"
+            id="idNumber"
+            name="idNumber"
             required
-            placeholder="Document Number"
             className="input mb-2"
           />
 
-          <label htmlFor="dateOfBirth">Date of Birth</label>
+          <label htmlFor="dateOfBirth">
+            Date of Birth (የልደት ቀን) <Asterisk />
+          </label>
           <input
             id="dateOfBirth"
             name="dateOfBirth"
             type="date"
             required
-            placeholder="Date of Birth"
-            className="input mb-4"
+            className="input mb-2"
           />
+
+          <label htmlFor="gender">
+            Gender (ጾታ) <span className="text-red-500">*</span>
+          </label>
+          <select id="gender" name="gender" className="input mb-4 h-[44px]">
+            <option>Male</option>
+            <option>Female</option>
+          </select>
 
           <Pending />
         </form>
@@ -107,3 +138,5 @@ export default function Register() {
     </>
   )
 }
+
+const Asterisk = () => <span className="text-red-500">*</span>

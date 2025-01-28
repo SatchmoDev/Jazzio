@@ -31,7 +31,6 @@ export default function SignIn() {
           id="email"
           type="email"
           required
-          placeholder="Email"
           className="input mb-2"
         />
 
@@ -42,7 +41,6 @@ export default function SignIn() {
           id="password"
           type="password"
           required
-          placeholder="Password"
           className="input mb-4"
         />
 
