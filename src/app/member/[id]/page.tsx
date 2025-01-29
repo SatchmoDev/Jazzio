@@ -32,7 +32,6 @@ export default async function Member({ params }: Props) {
     email,
     idNumber,
     dateOfBirth,
-    gender,
   } = document.data()!
 
   return (
