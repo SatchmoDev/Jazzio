@@ -17,11 +17,13 @@ export default function Register() {
         <Image
           src="/logo.png"
           alt="American Spaces Logo"
-          width={100}
-          height={100}
+          width={80}
+          height={80}
         />
 
-        <h1 className="mt-3">Satchmo American Center Membership</h1>
+        <h1 className="mt-3 text-2xl md:text-4xl">
+          Satchmo American Center Membership
+        </h1>
       </div>
 
       {state ? (
@@ -332,6 +334,9 @@ export default function Register() {
             name="dateOfBirth"
             type="date"
             required
+            max={
+              new Date(Date.now() - 441797328000).toISOString().split("T")[0]
+            }
             className="input mb-3"
           />
 
