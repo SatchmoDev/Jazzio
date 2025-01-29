@@ -13,7 +13,7 @@ export default function Register() {
 
   return (
     <>
-      <div className="mb-8 flex items-center gap-4">
+      <div className="mb-4 flex items-center gap-4">
         <Image
           src="/logo.png"
           alt="American Spaces Logo"
