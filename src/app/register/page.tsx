@@ -32,7 +32,7 @@ export default function Register() {
           <p>እባክዎ የዚህን ምስል እይታ በስልክዎ ፎቶ ያንሱ</p>
 
           <QRCode
-            value={"https://habinout.vercel.app/member/" + state}
+            value={"https://jazzio.land/member/" + state}
             bgColor="#fdf8ee"
             className="mx-auto mt-8"
           />
