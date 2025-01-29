@@ -15,20 +15,20 @@ export const readMembers = async (
 
   if (firstName) {
     conditions.push(
-      where("firstName", ">=", firstName.toLowerCase()),
-      where("firstName", "<", firstName.toLowerCase() + "\u5000"),
+      where("nameFirst", ">=", firstName.toLowerCase()),
+      where("nameFirst", "<", firstName.toLowerCase() + "\u5000"),
     )
   } else {
-    conditions.push(where("firstName", ">=", ""))
+    conditions.push(where("nameFirst", ">=", ""))
   }
 
   if (fatherName) {
     conditions.push(
-      where("fatherName", ">=", fatherName.toLowerCase()),
-      where("fatherName", "<", fatherName.toLowerCase() + "\u5000"),
+      where("nameFather", ">=", fatherName.toLowerCase()),
+      where("nameFather", "<", fatherName.toLowerCase() + "\u5000"),
     )
   } else {
-    conditions.push(where("fatherName", ">=", ""))
+    conditions.push(where("nameFather", ">=", ""))
   }
 
   if (phoneNumber) {

@@ -25,7 +25,7 @@ export default async function Events() {
           const { name, date, start, end } = event.data()
 
           return (
-            <div className="input flex items-center gap-8" key={event.id}>
+            <div className="input grid grid-cols-4 items-center" key={event.id}>
               <p>{name}</p>
               <p>{date}</p>
               <p>
@@ -59,8 +59,10 @@ export default async function Events() {
 
           await addDoc(collection(db, "events"), {
             name,
-            start: Date.parse(`${date}T${start}`),
-            end: Date.parse(`${date}T${end}`),
+            date,
+            start,
+            end,
+            timestamp: Date.parse(`${date}T${start}`),
           })
 
           redirect("/events")

@@ -52,8 +52,8 @@ export default function Form() {
               key={doc.id}
             >
               <p>
-                {cap(doc.firstName)} {cap(doc.fatherName)}{" "}
-                {cap(doc.grandfatherName)}
+                {cap(doc.nameFirst)} {cap(doc.nameFather)}{" "}
+                {cap(doc.nameGrandfather)}
               </p>
 
               <p>Phone Number: {doc.phoneNumber}</p>

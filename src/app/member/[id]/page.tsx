@@ -23,11 +23,13 @@ export default async function Member({ params }: Props) {
   const document = await getDoc(doc(db, "members", id))
 
   const {
-    firstName,
-    fatherName,
-    grandfatherName,
+    nameFirst,
+    nameFather,
+    nameGrandfather,
     phoneNumber,
     idType,
+    organization,
+    email,
     idNumber,
     dateOfBirth,
     gender,
@@ -36,15 +38,17 @@ export default async function Member({ params }: Props) {
   return (
     <>
       <h1>
-        {cap(firstName)} {cap(fatherName)} {cap(grandfatherName)}
+        {cap(nameFirst)} {cap(nameFather)} {cap(nameGrandfather)}
       </h1>
 
-      <p>Phone Number: {phoneNumber}</p>
       <p>
         {idType}: {idNumber}
       </p>
+
+      <p>Phone Number: {phoneNumber}</p>
+      <p>Organization: {organization}</p>
+      <p>Email: {email}</p>
       <p>Date of Birth: {dateOfBirth}</p>
-      <p>Gender: {gender}</p>
 
       <button
         onClick={async () => {
@@ -53,8 +57,8 @@ export default async function Member({ params }: Props) {
           const events = await getDocs(
             query(
               collection(db, "events"),
-              where("start", ">=", Date.now() - 1800000),
-              where("start", "<=", Date.now() + 1800000),
+              where("timestamp", ">=", Date.now() - 1800000),
+              where("timestamp", "<=", Date.now() + 1800000),
             ),
           )
 

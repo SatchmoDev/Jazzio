@@ -1,10 +1,9 @@
-# Habinout
+# Jazzio
 
 A sign in system for the Satchmo Center in Addis Ababa, Ethiopia.
 
-## TODO
+## To Do
 
-- Searching
 - Analytics
 
 ## Technologies
