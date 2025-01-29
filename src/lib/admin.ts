@@ -8,8 +8,8 @@ const app = apps.length
   ? apps[0]
   : initializeApp({
       credential: cert({
-        projectId: "habinout",
-        clientEmail: process.env.CLIENT_EMAIL,
+        projectId: "jazzio",
+        clientEmail: "firebase-adminsdk-fbsvc@jazzio.iam.gserviceaccount.com",
         privateKey: process.env.PRIVATE_KEY,
       }),
     })

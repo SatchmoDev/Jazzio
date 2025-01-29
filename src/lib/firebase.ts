@@ -3,12 +3,12 @@ import { getAuth } from "firebase/auth"
 import { getFirestore } from "firebase/firestore"
 
 const app = initializeApp({
-  apiKey: "AIzaSyDz_lHqP9l6DofKtMzZ2cMKV5kPdBmT6KI",
-  authDomain: "habinout.firebaseapp.com",
-  projectId: "habinout",
-  storageBucket: "habinout.firebasestorage.app",
-  messagingSenderId: "305053736120",
-  appId: "1:305053736120:web:3b8e4c40ec56becc39e84d",
+  apiKey: "AIzaSyCX8OuJgK0ZhOage5ZNDU25ZtybL0mEaS0",
+  authDomain: "jazzio.firebaseapp.com",
+  projectId: "jazzio",
+  storageBucket: "jazzio.firebasestorage.app",
+  messagingSenderId: "848393366219",
+  appId: "1:848393366219:web:93b33d33697ba29742094e",
 })
 
 export const db = getFirestore(app)
