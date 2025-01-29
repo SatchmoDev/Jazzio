@@ -10,7 +10,7 @@ const app = apps.length
       credential: cert({
         projectId: "jazzio",
         clientEmail: "firebase-adminsdk-fbsvc@jazzio.iam.gserviceaccount.com",
-        privateKey: process.env.PRIVATE_KEY,
+        privateKey: process.env.PRIVATE_KEY!.replace(/\\n/gm, "\n"),
       }),
     })
 
