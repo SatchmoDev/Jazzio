@@ -13,7 +13,7 @@ export default function Register() {
 
   return (
     <>
-      <div className="mb-4 flex items-center gap-4">
+      <div className="mb-2 flex items-center gap-4">
         <Image
           src="/logo.png"
           alt="American Spaces Logo"
@@ -73,7 +73,7 @@ export default function Register() {
           />
 
           <label htmlFor="phoneNumber" className="font-semibold">
-            Phone Number (ስልክ ቁጥር) <Asterisk />
+            Mobile Number (ስልክ ቁጥር) <Asterisk />
           </label>
           <p>Nine digits. Do not begin with zero.</p>
           <input
@@ -93,6 +93,7 @@ export default function Register() {
                 id="email"
                 name="email"
                 required
+                pattern="[^@]*"
                 className="input w-full disabled:opacity-40"
                 disabled={otherEmail}
               />

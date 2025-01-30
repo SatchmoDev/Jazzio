@@ -4,28 +4,28 @@ import { db } from "@/lib/firebase"
 import { collection, getDocs, limit, query, where } from "firebase/firestore"
 
 export const readMembers = async (
-  state: { docs: { id: string }[]; fd: FormData },
+  state: { members: { id: string }[]; fd: FormData },
   fd: FormData,
 ) => {
-  const { firstName, fatherName, phoneNumber } = Object.fromEntries(fd) as {
+  const { nameFirst, nameFather, phoneNumber } = Object.fromEntries(fd) as {
     [k: string]: string
   }
 
   const conditions = []
 
-  if (firstName) {
+  if (nameFirst) {
     conditions.push(
-      where("nameFirst", ">=", firstName.toLowerCase()),
-      where("nameFirst", "<", firstName.toLowerCase() + "\u5000"),
+      where("nameFirst", ">=", nameFirst.toLowerCase()),
+      where("nameFirst", "<", nameFirst.toLowerCase() + "\u5000"),
     )
   } else {
     conditions.push(where("nameFirst", ">=", ""))
   }
 
-  if (fatherName) {
+  if (nameFather) {
     conditions.push(
-      where("nameFather", ">=", fatherName.toLowerCase()),
-      where("nameFather", "<", fatherName.toLowerCase() + "\u5000"),
+      where("nameFather", ">=", nameFather.toLowerCase()),
+      where("nameFather", "<", nameFather.toLowerCase() + "\u5000"),
     )
   } else {
     conditions.push(where("nameFather", ">=", ""))
@@ -40,9 +40,20 @@ export const readMembers = async (
     conditions.push(where("phoneNumber", ">=", ""))
   }
 
-  const { docs } = await getDocs(
+  const members = await getDocs(
     query(collection(db, "members"), ...conditions, limit(25)),
   )
 
-  return { docs: docs.map((doc) => ({ id: doc.id, ...doc.data() })), fd }
+  const visits = await getDocs(
+    query(
+      collection(db, "visits"),
+      where("timestamp", ">=", Date.now() - 1000 * 60 * 60 * 5),
+    ),
+  )
+
+  return {
+    members: members.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
+    visits: visits.docs.map((doc) => ({ ...doc.data() })),
+    fd,
+  }
 }
