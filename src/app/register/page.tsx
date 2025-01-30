@@ -338,7 +338,7 @@ export default function Register() {
             max={
               new Date(Date.now() - 441797328000).toISOString().split("T")[0]
             }
-            className="input mb-3"
+            className="input mb-3 h-[44px] w-full"
           />
 
           <label htmlFor="gender" className="font-semibold">
