@@ -1,3 +1,4 @@
+import Pending from "@/components/Pending"
 import { db } from "@/lib/firebase"
 import { cap } from "@/utils/client"
 import { protect } from "@/utils/server"
@@ -20,7 +21,7 @@ export default async function Member({ params }: Props) {
   await protect()
 
   const { id } = await params
-  const document = await getDoc(doc(db, "members", id))
+  const member = await getDoc(doc(db, "members", id))
 
   const {
     nameFirst,
@@ -32,7 +33,23 @@ export default async function Member({ params }: Props) {
     email,
     idNumber,
     dateOfBirth,
-  } = document.data()!
+  } = member.data()!
+
+  const events = await getDocs(
+    query(
+      collection(db, "events"),
+      where("timestamp", ">=", Date.now() - 1000 * 60 * 60 * 3),
+      where("timestamp", "<=", Date.now() + 1000 * 60 * 60 * 3),
+    ),
+  )
+
+  const visits = await getDocs(
+    query(
+      collection(db, "visits"),
+      where("member", "==", member.id),
+      where("timestamp", ">=", Date.now() - 1000 * 60 * 60 * 3),
+    ),
+  )
 
   return (
     <>
@@ -49,30 +66,33 @@ export default async function Member({ params }: Props) {
       <p>Email: {email}</p>
       <p>Date of Birth: {dateOfBirth}</p>
 
-      <button
-        onClick={async () => {
+      <form
+        action={async (fd) => {
           "use server"
-
-          const events = await getDocs(
-            query(
-              collection(db, "events"),
-              where("timestamp", ">=", Date.now() - 1800000),
-              where("timestamp", "<=", Date.now() + 1800000),
-            ),
-          )
 
           await addDoc(collection(db, "visits"), {
             member: id,
             timestamp: Date.now(),
-            event: events.empty ? "" : events.docs[0].id,
+            event: fd.get("event"),
           })
 
           redirect("/search")
         }}
-        className="button mt-4"
       >
-        Sign In
-      </button>
+        <select name="event" className="input">
+          {events.docs.map((event) => {
+            const { name } = event.data()
+
+            return (
+              <option value={event.id} key={event.id}>
+                {name}
+              </option>
+            )
+          })}
+        </select>
+
+        <Pending disabled={!visits.empty} />
+      </form>
     </>
   )
 }

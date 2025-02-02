@@ -84,73 +84,19 @@ export default function Register() {
             className="input mb-3"
           />
 
-          <div className="mb-3 flex items-center gap-2">
-            <div className="flex w-full flex-col">
-              <label htmlFor="email" className="font-semibold">
-                Email (ኢሜይል) <Asterisk />
-              </label>
-              <input
-                id="email"
-                name="email"
-                required
-                pattern="[^@]*"
-                className="input w-full disabled:opacity-40"
-                disabled={otherEmail}
-              />
-            </div>
-
-            <p className="mt-5 text-xl">@</p>
-
-            <div className="flex w-full flex-col">
-              <label htmlFor="domain" className="font-semibold">
-                Domain <Asterisk />
-              </label>
-              <select
-                id="domain"
-                name="domain"
-                className="input h-[44px] w-full"
-                onChange={(e) => {
-                  if (e.target.value === "Other") {
-                    setOtherEmail(true)
-                  } else {
-                    setOtherEmail(false)
-                  }
-                }}
-                required
-                defaultValue=""
-              >
-                <option disabled></option>
-                <option>gmail.com</option>
-                <option>yahoo.com</option>
-                <option>hotmail.com</option>
-                <option>outlook.com</option>
-                <option>icloud.com</option>
-                <option>aau.edu.et</option>
-                <option>aastu.edu.et</option>
-                <option>smuc.edu.et</option>
-                <option>ethiotelecom.et</option>
-                <option>Other</option>
-              </select>
-            </div>
-          </div>
-
-          {otherEmail && (
-            <>
-              <label htmlFor="fullEmail" className="font-semibold">
-                Full Email (ሙሉ የኢሜይል አድራሻ) <Asterisk />
-              </label>
-              <input
-                id="fullEmail"
-                name="fullEmail"
-                type="email"
-                required
-                className="input mb-3"
-              />
-            </>
-          )}
+          <label htmlFor="email" className="font-semibold">
+            Email (ኢሜይል) <Asterisk />
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            className="input mb-3"
+          />
 
           <label htmlFor="organization" className="font-semibold">
-            School / Organization (ትምህርት ቤት / የስራ ቦታ) <Asterisk />
+            Organization (የስራ ቦታ) <Asterisk />
           </label>
           <select
             id="organization"
@@ -338,7 +284,7 @@ export default function Register() {
             max={
               new Date(Date.now() - 441797328000).toISOString().split("T")[0]
             }
-            className="input mb-3 h-[44px] w-full"
+            className="input mb-3 h-[44px]"
           />
 
           <label htmlFor="gender" className="font-semibold">

@@ -41,7 +41,7 @@ export const readMembers = async (
   }
 
   const members = await getDocs(
-    query(collection(db, "members"), ...conditions, limit(25)),
+    query(collection(db, "members"), ...conditions, limit(100)),
   )
 
   const visits = await getDocs(

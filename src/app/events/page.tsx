@@ -8,13 +8,19 @@ import {
   doc,
   getDocs,
   query,
+  where,
 } from "firebase/firestore"
 import { redirect } from "next/navigation"
 
 export default async function Events() {
   await protect()
 
-  const events = await getDocs(query(collection(db, "events")))
+  const events = await getDocs(
+    query(
+      collection(db, "events"),
+      where("date", ">=", new Date().toISOString().split("T")[0]),
+    ),
+  )
 
   return (
     <>
@@ -62,7 +68,7 @@ export default async function Events() {
             date,
             start,
             end,
-            timestamp: Date.parse(`${date}T${start}`),
+            timestamp: new Date(`${date}T${start}`).getTime(),
           })
 
           redirect("/events")
