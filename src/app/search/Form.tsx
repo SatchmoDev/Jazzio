@@ -51,7 +51,8 @@ export default function Form() {
               href={"/member/" + m.id}
               className={
                 "border-primary rounded border-2 p-2 " +
-                (visits.some((visit) => visit.member === m.id) && "bg-blue-500")
+                (visits.some((visit) => visit.member === m.id) &&
+                  "bg-primary/30")
               }
               key={m.id}
             >

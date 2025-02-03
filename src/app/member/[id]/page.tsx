@@ -66,35 +66,37 @@ export default async function Member({ params }: Props) {
       <p>Email: {email}</p>
       <p>Date of Birth: {dateOfBirth}</p>
 
-      <form
-        action={async (fd) => {
-          "use server"
+      {visits.empty && (
+        <form
+          action={async (fd) => {
+            "use server"
 
-          await addDoc(collection(db, "visits"), {
-            member: id,
-            timestamp: Date.now(),
-            event: fd.get("event"),
-          })
+            await addDoc(collection(db, "visits"), {
+              member: id,
+              event: fd.get("event"),
+              timestamp: Date.now(),
+            })
 
-          redirect("/search")
-        }}
-      >
-        <select name="event" className="input">
-          {events.docs.map((event) => {
-            const { name } = event.data()
+            redirect("/search")
+          }}
+        >
+          <select name="event" className="input">
+            {events.docs.map((event) => {
+              const { name } = event.data()
 
-            return (
-              <option value={event.id} key={event.id}>
-                {name}
-              </option>
-            )
-          })}
+              return (
+                <option value={event.id} key={event.id}>
+                  {name}
+                </option>
+              )
+            })}
 
-          <option>Walk In</option>
-        </select>
+            <option value="v7n6zlSpJEE5hKjlygx9">Walk In</option>
+          </select>
 
-        <Pending disabled={!visits.empty} />
-      </form>
+          <Pending />
+        </form>
+      )}
     </>
   )
 }

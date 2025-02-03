@@ -18,7 +18,7 @@ export default async function Events() {
   const events = await getDocs(
     query(
       collection(db, "events"),
-      where("date", ">=", new Date().toISOString().split("T")[0]),
+      where("timestamp", ">=", new Date().setHours(0, 0, 0, 0)),
     ),
   )
 
@@ -27,31 +27,26 @@ export default async function Events() {
       <h1>Events</h1>
 
       <div className="space-y-2">
-        {events.docs.map((event) => {
-          const { name, date, start, end } = event.data()
+        {events.docs.map((event) => (
+          <div
+            className="input flex items-center justify-between"
+            key={event.id}
+          >
+            <p>{event.data().name}</p>
 
-          return (
-            <div className="input grid grid-cols-4 items-center" key={event.id}>
-              <p>{name}</p>
-              <p>{date}</p>
-              <p>
-                {start} - {end}
-              </p>
+            <button
+              onClick={async () => {
+                "use server"
 
-              <button
-                onClick={async () => {
-                  "use server"
-
-                  await deleteDoc(doc(db, "events", event.id))
-                  redirect("/events")
-                }}
-                className="button"
-              >
-                Delete
-              </button>
-            </div>
-          )
-        })}
+                await deleteDoc(doc(db, "events", event.id))
+                redirect("/events")
+              }}
+              className="button"
+            >
+              Delete
+            </button>
+          </div>
+        ))}
       </div>
 
       <h2 className="mt-4 mb-2 text-2xl font-semibold">New</h2>
@@ -59,15 +54,12 @@ export default async function Events() {
         action={async (fd) => {
           "use server"
 
-          const { name, date, start, end } = Object.fromEntries(fd) as {
+          const { name, date, start } = Object.fromEntries(fd) as {
             [k: string]: string
           }
 
           await addDoc(collection(db, "events"), {
             name,
-            date,
-            start,
-            end,
             timestamp: new Date(`${date}T${start}`).getTime(),
           })
 
@@ -91,15 +83,6 @@ export default async function Events() {
         <input
           id="start"
           name="start"
-          type="time"
-          required
-          className="input mb-2"
-        />
-
-        <label htmlFor="end">End Time</label>
-        <input
-          id="end"
-          name="end"
           type="time"
           required
           className="input mb-4"
