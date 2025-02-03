@@ -9,7 +9,6 @@ import { createMember } from "./actions"
 export default function Register() {
   const [state, action] = useActionState(createMember, "")
   const [other, setOther] = useState(false)
-  const [otherEmail, setOtherEmail] = useState(false)
 
   return (
     <>
@@ -27,7 +26,7 @@ export default function Register() {
       </div>
 
       {state ? (
-        <div className="text-center text-lg">
+        <div className="text-center text-xl">
           <p>Please take a screenshot of this image</p>
           <p>እባክዎ የዚህን ምስል እይታ በስልክዎ ፎቶ ያንሱ</p>
 
@@ -202,7 +201,7 @@ export default function Register() {
               "School Of Indiana",
               "School Of Tomorrow",
               "Seattle Academy",
-              "Self-Employed",
+              "Self Employed",
               "Sosina School",
               "Southwest Academy",
               "St John Baptist School",
@@ -222,9 +221,9 @@ export default function Register() {
               "Other",
             ]
               .sort((a, b) => (a.toLowerCase() > b.toLowerCase() ? 1 : -1))
-              .map((org) => {
-                return <option key={org}>{org}</option>
-              })}
+              .map((org) => (
+                <option key={org}>{org}</option>
+              ))}
           </select>
 
           {other && (
@@ -284,7 +283,7 @@ export default function Register() {
             max={
               new Date(Date.now() - 441797328000).toISOString().split("T")[0]
             }
-            className="input mb-3 h-[44px]"
+            className="input mb-3 h-[44px] w-full grow"
           />
 
           <label htmlFor="gender" className="font-semibold">

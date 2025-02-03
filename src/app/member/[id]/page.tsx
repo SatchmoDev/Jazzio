@@ -89,6 +89,8 @@ export default async function Member({ params }: Props) {
               </option>
             )
           })}
+
+          <option>Walk In</option>
         </select>
 
         <Pending disabled={!visits.empty} />

@@ -28,14 +28,14 @@ export const createMember = async (state: string, fd: FormData) => {
 }
 
 const fixEmail = (email: string) => {
-  const typoDomains = [
-    [["gmale.com", "gmial.com", "mail.com", "gmail.con"], "gmail.com"],
-  ]
+  email = email.replace(/\.con$/, ".com")
+
+  const domains = [[["gmale.com", "gmial.com", "mail.com"], "gmail.com"]]
 
   const parts = email.split("@")
   const domain = parts[1]
 
-  for (const [typos, correct] of typoDomains) {
+  for (const [typos, correct] of domains) {
     if (typos.includes(domain)) {
       return parts[0] + "@" + correct
     }
