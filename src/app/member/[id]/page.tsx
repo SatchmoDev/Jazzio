@@ -52,7 +52,7 @@ export default async function Member({ params }: Props) {
   )
 
   return (
-    <>
+    <div className="text-xl">
       <h1>
         {cap(nameFirst)} {cap(nameFather)} {cap(nameGrandfather)}
       </h1>
@@ -79,6 +79,7 @@ export default async function Member({ params }: Props) {
 
             redirect("/search")
           }}
+          className="mt-4 flex flex-col gap-2"
         >
           <select name="event" className="input">
             {events.docs.map((event) => {
@@ -97,6 +98,6 @@ export default async function Member({ params }: Props) {
           <Pending />
         </form>
       )}
-    </>
+    </div>
   )
 }

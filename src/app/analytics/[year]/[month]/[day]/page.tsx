@@ -48,6 +48,8 @@ export default async function Day({ params }: Props) {
         }).format(date)}
       </h1>
 
+      <p className="mb-4">Attendance: {full.length}</p>
+
       {full.map(({ member }, i) => {
         return (
           <p key={i}>

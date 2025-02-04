@@ -1,7 +1,14 @@
 "use server"
 
 import { db } from "@/lib/firebase"
-import { collection, getDocs, limit, query, where } from "firebase/firestore"
+import {
+  collection,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore"
 
 export const readMembers = async (
   state: { members: { id: string }[]; fd: FormData },
@@ -41,7 +48,12 @@ export const readMembers = async (
   }
 
   const members = await getDocs(
-    query(collection(db, "members"), ...conditions, limit(100)),
+    query(
+      collection(db, "members"),
+      ...conditions,
+      limit(100),
+      orderBy("joined", "desc"),
+    ),
   )
 
   const visits = await getDocs(
