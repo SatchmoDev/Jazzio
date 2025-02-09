@@ -102,6 +102,16 @@ export default function Register() {
             id="dateOfBirth"
             required
             type="date"
+            min={
+              new Date(Date.now() - 1000 * 60 * 60 * 24 * 365.25 * 80)
+                .toISOString()
+                .split("T")[0]
+            }
+            max={
+              new Date(Date.now() - 1000 * 60 * 60 * 24 * 365.25 * 14)
+                .toISOString()
+                .split("T")[0]
+            }
             className="input mb-3"
           />
 

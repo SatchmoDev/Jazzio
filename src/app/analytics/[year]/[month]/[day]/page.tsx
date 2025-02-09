@@ -47,12 +47,16 @@ export default async function Day({ params }: Props) {
       </h1>
 
       <p>Attendance: {members.length}</p>
-      <div>
+      <div className="flex flex-col">
         {members.map((member) => {
           const { nameFirst, nameFather, nameGrandfather } = member.data()!
 
           return (
-            <Link href={"/member/" + member.id} key={member.id}>
+            <Link
+              href={"/member/" + member.id}
+              className="w-fit"
+              key={member.id}
+            >
               {cap(nameFirst)} {cap(nameFather)} {cap(nameGrandfather)}
             </Link>
           )
