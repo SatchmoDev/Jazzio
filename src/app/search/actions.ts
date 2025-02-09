@@ -10,49 +10,31 @@ import {
   where,
 } from "firebase/firestore"
 
-export const readMembers = async (
-  state: { members: { id: string }[]; fd: FormData },
+export const searchMembers = async (
+  state: { members: any[]; visits: any[]; fd: FormData },
   fd: FormData,
 ) => {
-  const { nameFirst, nameFather, phoneNumber } = Object.fromEntries(fd) as {
-    [k: string]: string
-  }
+  const conditions = ["nameFather", "nameFirst", "mobileNumber"].flatMap(
+    (key) => {
+      const value = fd.get(key) as string
 
-  const conditions = []
-
-  if (nameFirst) {
-    conditions.push(
-      where("nameFirst", ">=", nameFirst.toLowerCase()),
-      where("nameFirst", "<", nameFirst.toLowerCase() + "\u5000"),
-    )
-  } else {
-    conditions.push(where("nameFirst", ">=", ""))
-  }
-
-  if (nameFather) {
-    conditions.push(
-      where("nameFather", ">=", nameFather.toLowerCase()),
-      where("nameFather", "<", nameFather.toLowerCase() + "\u5000"),
-    )
-  } else {
-    conditions.push(where("nameFather", ">=", ""))
-  }
-
-  if (phoneNumber) {
-    conditions.push(
-      where("phoneNumber", ">=", phoneNumber),
-      where("phoneNumber", "<", phoneNumber + "\u5000"),
-    )
-  } else {
-    conditions.push(where("phoneNumber", ">=", ""))
-  }
+      if (value) {
+        return [
+          where(key, ">=", value.toLowerCase()),
+          where(key, "<=", value.toLowerCase() + "\u5000"),
+        ]
+      } else {
+        return where(key, ">=", value.toLowerCase())
+      }
+    },
+  )
 
   const members = await getDocs(
     query(
       collection(db, "members"),
-      ...conditions,
-      limit(100),
       orderBy("joined", "desc"),
+      limit(50),
+      ...conditions,
     ),
   )
 
@@ -65,7 +47,7 @@ export const readMembers = async (
 
   return {
     members: members.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
-    visits: visits.docs.map((doc) => ({ ...doc.data() })),
+    visits: visits.docs.map((doc) => doc.data().member),
     fd,
   }
 }

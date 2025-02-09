@@ -1,66 +1,66 @@
 "use client"
 
 import Pending from "@/components/Pending"
-import { cap } from "@/utils/client"
-import { DocumentData } from "firebase/firestore"
-import Link from "next/link"
 import { useActionState } from "react"
-import { readMembers } from "./actions"
+import { searchMembers } from "./actions"
+import { cap } from "@/utils/client"
+import Link from "next/link"
 
 export default function Form() {
-  const [{ members, visits, fd }, action] = useActionState(readMembers, {
+  const [{ members, visits, fd }, action] = useActionState(searchMembers, {
     members: [],
     visits: [],
     fd: new FormData(),
   })
+
+  console.log(members)
 
   return (
     <>
       <form action={action} className="flex flex-col">
         <label htmlFor="nameFirst">First Name</label>
         <input
-          id="nameFirst"
           name="nameFirst"
+          id="nameFirst"
           defaultValue={(fd.get("nameFirst") || "") as string}
           className="input mb-2"
         />
 
-        <label htmlFor="nameFather">Father&apos;s Name</label>
+        <label htmlFor="nameFather">Father Name</label>
         <input
-          id="nameFather"
           name="nameFather"
+          id="nameFather"
           defaultValue={(fd.get("nameFather") || "") as string}
           className="input mb-2"
         />
 
-        <label htmlFor="phoneNumber">Phone Number</label>
+        <label htmlFor="mobileNumber">Mobile Number</label>
         <input
-          id="phoneNumber"
-          name="phoneNumber"
-          defaultValue={(fd.get("phoneNumber") || "") as string}
+          name="mobileNumber"
+          id="mobileNumber"
+          defaultValue={(fd.get("mobileNumber") || "") as string}
           className="input mb-4"
         />
 
         <Pending />
       </form>
 
-      <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {members.map((m: DocumentData) => {
+      <div className="mt-4 grid gap-4 lg:grid-cols-2">
+        {members.map((member: any) => {
           return (
             <Link
-              href={"/member/" + m.id}
+              href={"/member/" + member.id}
               className={
-                "border-primary rounded border-2 p-2 " +
-                (visits.some((visit) => visit.member === m.id) &&
-                  "bg-primary/30")
+                "input flex justify-between " +
+                (visits.includes(member.id) && "bg-primary/30")
               }
-              key={m.id}
+              key={member.id}
             >
               <p>
-                {cap(m.nameFirst)} {cap(m.nameFather)} {cap(m.nameGrandfather)}
+                {cap(member.nameFirst)} {cap(member.nameFather)}
               </p>
 
-              <p>Phone Number: {m.phoneNumber}</p>
+              <p>{member.mobileNumber}</p>
             </Link>
           )
         })}

@@ -14,7 +14,7 @@
 
 @layer components {
   .input {
-    @apply border-primary bg-background rounded border-2 p-2;
+    @apply bg-background border-primary rounded border-2 p-2;
   }
 
   .button {

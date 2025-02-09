@@ -7,43 +7,34 @@ import { useState } from "react"
 import { createCookie } from "./actions"
 
 export default function SignIn() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
 
   return (
     <>
-      <h1>Guard Sign In</h1>
+      <h1>Sign In</h1>
 
       <form
-        onSubmit={async (e) => {
-          e.preventDefault()
-
-          await signInWithEmailAndPassword(auth, email, password).then(
-            async ({ user }) => createCookie(await user.getIdToken()),
+        action={async (fd) => {
+          await signInWithEmailAndPassword(
+            auth,
+            "guard@jazzio.land",
+            fd.get("password") as string,
           )
+            .then(async ({ user }) => createCookie(await user.getIdToken()))
+            .catch(() => setError("Invalid password"))
         }}
         className="flex flex-col"
       >
-        <label htmlFor="email">Email</label>
+        <label htmlFor="password">Password</label>
         <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          id="email"
-          type="email"
+          name="password"
+          id="password"
           required
+          type="password"
           className="input mb-2"
         />
 
-        <label htmlFor="password">Password</label>
-        <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          id="password"
-          type="password"
-          required
-          className="input mb-4"
-        />
-
+        {error && <p className="mb-2 text-center text-red-500">{error}</p>}
         <Pending />
       </form>
     </>

@@ -1,13 +1,13 @@
 "use client"
 
 import Pending from "@/components/Pending"
-import Image from "next/image"
 import { useActionState, useState } from "react"
 import QRCode from "react-qr-code"
-import { createMember } from "./actions"
+import { registerMember } from "./actions"
+import Image from "next/image"
 
 export default function Register() {
-  const [state, action] = useActionState(createMember, "")
+  const [state, action] = useActionState(registerMember, "")
   const [other, setOther] = useState(false)
 
   return (
@@ -20,20 +20,19 @@ export default function Register() {
           height={80}
         />
 
-        <h1 className="mt-3 text-2xl md:text-4xl">
+        <h1 className="mt-2 text-2xl md:text-4xl">
           Satchmo American Center Membership
         </h1>
       </div>
 
       {state ? (
         <div className="text-center text-xl">
-          <p>Please take a screenshot of this image</p>
-          <p>እባክዎ የዚህን ምስል እይታ በስልክዎ ፎቶ ያንሱ</p>
+          <p>Please save this image</p>
 
           <QRCode
             value={"https://jazzio.land/member/" + state}
             bgColor="#fdf8ee"
-            className="mx-auto mt-8"
+            className="mx-auto mt-4"
           />
         </div>
       ) : (
@@ -42,44 +41,44 @@ export default function Register() {
             First Name (ስም) <Asterisk />
           </label>
           <input
-            id="nameFirst"
             name="nameFirst"
+            id="nameFirst"
             required
-            pattern="[A-Za-z -.'/]+"
+            pattern="[A-Za-z .-'/]+"
             className="input mb-3"
           />
 
           <label htmlFor="nameFather" className="font-semibold">
-            Father&apos;s Name (የአባት ስም) <Asterisk />
+            Father Name (የአባት ስም) <Asterisk />
           </label>
           <input
-            id="nameFather"
             name="nameFather"
+            id="nameFather"
             required
-            pattern="[A-Za-z -.'/]+"
+            pattern="[A-Za-z .-'/]+"
             className="input mb-3"
           />
 
           <label htmlFor="nameGrandfather" className="font-semibold">
-            Grandfather&apos;s Name (የአያት ስም) <Asterisk />
+            Grandfather Name (የአያት ስም) <Asterisk />
           </label>
           <input
-            id="nameGrandfather"
             name="nameGrandfather"
+            id="nameGrandfather"
             required
-            pattern="[A-Za-z -.'/]+"
+            pattern="[A-Za-z .-'/]+"
             className="input mb-3"
           />
 
-          <label htmlFor="phoneNumber" className="font-semibold">
+          <label htmlFor="mobileNumber" className="font-semibold">
             Mobile Number (ስልክ ቁጥር) <Asterisk />
           </label>
-          <p>Nine digits. Do not begin with zero.</p>
+          {/* <p>Nine digits. Do not begin with zero.</p> */}
           <input
-            id="phoneNumber"
-            name="phoneNumber"
-            pattern="(9|7)\d{8}"
+            name="mobileNumber"
+            id="mobileNumber"
             required
+            pattern="[97]\d{8}"
             className="input mb-3"
           />
 
@@ -87,23 +86,50 @@ export default function Register() {
             Email (ኢሜይል) <Asterisk />
           </label>
           <input
-            id="email"
             name="email"
-            type="email"
+            id="email"
             required
+            type="email"
             className="input mb-3"
           />
+
+          <label htmlFor="dateOfBirth" className="font-semibold">
+            Date of Birth (የልደት ቀን) <Asterisk />
+          </label>
+          {/* <p> International Calendar (በግሪጎሪያን ዘመን አቆጣጠር)</p> */}
+          <input
+            name="dateOfBirth"
+            id="dateOfBirth"
+            required
+            type="date"
+            className="input mb-3"
+          />
+
+          <label htmlFor="gender" className="font-semibold">
+            Gender (ጾታ) <Asterisk />
+          </label>
+          <select
+            name="gender"
+            id="gender"
+            defaultValue=""
+            required
+            className="input mb-3 h-11"
+          >
+            <option disabled></option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
 
           <label htmlFor="organization" className="font-semibold">
             Organization (የስራ ቦታ) <Asterisk />
           </label>
           <select
-            id="organization"
             name="organization"
-            className="input mb-3 h-[44px]"
-            onChange={(e) => setOther(e.target.value === "Other")}
-            required
+            id="organization"
             defaultValue=""
+            required
+            className="input mb-3 h-11"
+            onChange={(e) => setOther(e.target.value === "Other")}
           >
             <option disabled></option>
             {[
@@ -129,7 +155,7 @@ export default function Register() {
               "Black Lion Secondary School",
               "Bole Kale Hiwot",
               "Bole Senior Secondary School",
-              "CALS/xHub Addis",
+              "xHub Addis",
               "Center African Leadership Studies Xhub",
               "Clearskies Technology",
               "Commercial Bank of Ethiopia",
@@ -216,25 +242,26 @@ export default function Register() {
               "Value Events and Initiatives",
               "Vision Academy",
               "Wollo University",
-              "Yekatit 13 Hospital",
-              "Zero-One-Zero-One Tech and Entrepreneurship",
-              "Other",
+              "Yekatit 12 Hospital Medical College",
+              "Zero One Zero One",
             ]
               .sort((a, b) => (a.toLowerCase() > b.toLowerCase() ? 1 : -1))
               .map((org) => (
                 <option key={org}>{org}</option>
               ))}
+            <option>Other</option>
           </select>
 
           {other && (
             <>
-              <label htmlFor="organizationCustom" className="font-semibold">
+              <label htmlFor="customOrganization" className="font-semibold">
                 Organization Name (የተቋም ስም) <Asterisk />
               </label>
               <input
-                id="organizationCustom"
-                name="organizationCustom"
+                name="customOrganization"
+                id="customOrganization"
                 required
+                pattern="[A-Za-z .-'/]+"
                 className="input mb-3"
               />
             </>
@@ -244,62 +271,33 @@ export default function Register() {
             ID Type (የመታወቂያ አይነት) <Asterisk />
           </label>
           <select
-            id="idType"
             name="idType"
-            required
-            className="input mb-3 h-[44px]"
+            id="idType"
             defaultValue=""
+            required
+            className="input mb-3 h-11"
           >
             <option disabled></option>
-            <option>Student ID</option>
+            <option>Student</option>
             <option>Kebele</option>
-            <option value="National ID">National ID / Fayda</option>
-            <option>Drivers License</option>
+            <option>National</option>
             <option>Passport</option>
-            <option>Employee ID</option>
-            <option>Ministry of Foreign Affairs ID</option>
-            <option>Temporary Residence ID</option>
+            <option>Employee</option>
+            <option>Residence</option>
+            <option>Driver License</option>
+            <option>Ministry of Foreign Affairs</option>
           </select>
 
           <label htmlFor="idNumber" className="font-semibold">
             ID Number (የመታወቂያ ቁጥር) <Asterisk />
           </label>
           <input
-            id="idNumber"
             name="idNumber"
+            id="idNumber"
             required
-            className="input mb-3"
+            pattern="[A-Za-z0-9 .-'/]+"
+            className="input mb-4"
           />
-
-          <label htmlFor="dateOfBirth" className="font-semibold">
-            Date of Birth (የልደት ቀን) <Asterisk />
-          </label>
-          <p>International Calendar (በግሪጎሪያን ዘመን አቆጣጠር)</p>
-          <input
-            id="dateOfBirth"
-            name="dateOfBirth"
-            type="date"
-            required
-            max={
-              new Date(Date.now() - 441797328000).toISOString().split("T")[0]
-            }
-            className="input mb-3 h-[44px] w-full grow"
-          />
-
-          <label htmlFor="gender" className="font-semibold">
-            Gender (ጾታ) <Asterisk />
-          </label>
-          <select
-            id="gender"
-            name="gender"
-            className="input mb-4 h-[44px]"
-            required
-            defaultValue=""
-          >
-            <option disabled></option>
-            <option>Male</option>
-            <option>Female</option>
-          </select>
 
           <Pending />
         </form>

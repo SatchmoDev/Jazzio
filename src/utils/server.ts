@@ -6,9 +6,7 @@ export const protect = async () => {
   const store = await cookies()
   const session = store.get("session")
 
-  if (!session) {
-    redirect("/signin")
-  }
+  if (!session) redirect("/signin")
 
   auth.verifySessionCookie(session.value, true).catch(() => {
     redirect("/signin")
