@@ -1,10 +1,10 @@
 "use client"
 
 import Pending from "@/components/Pending"
+import Image from "next/image"
 import { useActionState, useState } from "react"
 import QRCode from "react-qr-code"
 import { registerMember } from "./actions"
-import Image from "next/image"
 
 export default function Register() {
   const [state, action] = useActionState(registerMember, "")
@@ -44,7 +44,7 @@ export default function Register() {
             name="nameFirst"
             id="nameFirst"
             required
-            pattern="[A-Za-z .-'/]+"
+            pattern="^[A-Za-z .-'/]+$"
             className="input mb-3"
           />
 
@@ -55,7 +55,7 @@ export default function Register() {
             name="nameFather"
             id="nameFather"
             required
-            pattern="[A-Za-z .-'/]+"
+            pattern="^[A-Za-z .-'/]+$"
             className="input mb-3"
           />
 
@@ -66,7 +66,7 @@ export default function Register() {
             name="nameGrandfather"
             id="nameGrandfather"
             required
-            pattern="[A-Za-z .-'/]+"
+            pattern="^[A-Za-z .-'/]+$"
             className="input mb-3"
           />
 
@@ -96,7 +96,7 @@ export default function Register() {
           <label htmlFor="dateOfBirth" className="font-semibold">
             Date of Birth (የልደት ቀን) <Asterisk />
           </label>
-          {/* <p> International Calendar (በግሪጎሪያን ዘመን አቆጣጠር)</p> */}
+          {/* <p>International Calendar (በግሪጎሪያን ዘመን አቆጣጠር)</p> */}
           <input
             name="dateOfBirth"
             id="dateOfBirth"
@@ -271,7 +271,7 @@ export default function Register() {
                 name="customOrganization"
                 id="customOrganization"
                 required
-                pattern="[A-Za-z .-'/]+"
+                pattern="^[A-Za-z .-'/]+$"
                 className="input mb-3"
               />
             </>
@@ -305,7 +305,7 @@ export default function Register() {
             name="idNumber"
             id="idNumber"
             required
-            pattern="[A-Za-z0-9 .-'/]+"
+            pattern="^[A-Za-z0-9 -/]+$"
             className="input mb-4"
           />
 

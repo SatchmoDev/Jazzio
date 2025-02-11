@@ -2,12 +2,12 @@ import { db } from "@/lib/firebase"
 import { cap } from "@/utils/client"
 import { protect } from "@/utils/server"
 import {
-  getDocs,
-  query,
   collection,
-  where,
   doc,
   getDoc,
+  getDocs,
+  query,
+  where,
 } from "firebase/firestore"
 import Link from "next/link"
 
@@ -40,6 +40,7 @@ export default async function Day({ params }: Props) {
     <>
       <h1>
         {Intl.DateTimeFormat("en-us", {
+          weekday: "long",
           month: "long",
           day: "numeric",
           year: "numeric",
@@ -47,21 +48,19 @@ export default async function Day({ params }: Props) {
       </h1>
 
       <p>Attendance: {members.length}</p>
-      <div className="flex flex-col">
+      <ol className="list-decimal">
         {members.map((member) => {
           const { nameFirst, nameFather, nameGrandfather } = member.data()!
 
           return (
-            <Link
-              href={"/member/" + member.id}
-              className="w-fit"
-              key={member.id}
-            >
-              {cap(nameFirst)} {cap(nameFather)} {cap(nameGrandfather)}
-            </Link>
+            <li key={member.id}>
+              <Link href={"/member/" + member.id}>
+                {cap(nameFirst)} {cap(nameFather)} {cap(nameGrandfather)}
+              </Link>
+            </li>
           )
         })}
-      </div>
+      </ol>
     </>
   )
 }

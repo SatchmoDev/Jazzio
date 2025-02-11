@@ -12,6 +12,7 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore"
+import { revalidatePath } from "next/cache"
 import { notFound, redirect } from "next/navigation"
 
 interface Props {
@@ -32,6 +33,7 @@ export default async function Member({ params }: Props) {
     nameFather,
     nameGrandfather,
     mobileNumber,
+    dateOfBirth,
     comments,
   } = member.data()!
 
@@ -55,6 +57,7 @@ export default async function Member({ params }: Props) {
         </p>
 
         <p className="input text-xl">Mobile: {mobileNumber}</p>
+        <p className="input text-xl">Date of Birth: {dateOfBirth}</p>
 
         {visits.empty && (
           <button
@@ -73,25 +76,29 @@ export default async function Member({ params }: Props) {
             Sign In
           </button>
         )}
-
-        <form
-          action={async (fd) => {
-            "use server"
-
-            await updateDoc(doc(db, "members", id), {
-              comments: fd.get("comments"),
-            })
-          }}
-          className="mt-8 flex flex-col gap-2"
-        >
-          <textarea
-            name="comments"
-            defaultValue={comments}
-            className="input h-40 text-xl"
-          />
-          <Pending />
-        </form>
       </div>
+
+      <form
+        action={async (fd) => {
+          "use server"
+
+          await updateDoc(doc(db, "members", id), {
+            comments: fd.get("comments"),
+          })
+
+          revalidatePath("/member/" + id)
+        }}
+        className="mt-8 flex flex-col gap-2"
+      >
+        <textarea
+          name="comments"
+          defaultValue={comments}
+          placeholder="Comments"
+          className="input h-40 text-xl"
+        />
+
+        <Pending />
+      </form>
     </>
   )
 }
