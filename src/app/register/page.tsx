@@ -73,7 +73,7 @@ export default function Register() {
           <label htmlFor="mobileNumber" className="font-semibold">
             Mobile Number (ስልክ ቁጥር) <Asterisk />
           </label>
-          {/* <p>Nine digits. Do not begin with zero.</p> */}
+          <p>Nine digits. Do not begin with zero.</p>
           <input
             name="mobileNumber"
             id="mobileNumber"
@@ -96,7 +96,7 @@ export default function Register() {
           <label htmlFor="dateOfBirth" className="font-semibold">
             Date of Birth (የልደት ቀን) <Asterisk />
           </label>
-          {/* <p>International Calendar (በግሪጎሪያን ዘመን አቆጣጠር)</p> */}
+          <p>International Calendar (በግሪጎሪያን ዘመን አቆጣጠር)</p>
           <input
             name="dateOfBirth"
             id="dateOfBirth"
