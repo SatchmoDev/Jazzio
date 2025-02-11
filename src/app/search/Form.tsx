@@ -1,10 +1,10 @@
 "use client"
 
 import Pending from "@/components/Pending"
-import { useActionState } from "react"
-import { searchMembers } from "./actions"
 import { cap } from "@/utils/client"
 import Link from "next/link"
+import { useActionState } from "react"
+import { searchMembers } from "./actions"
 
 export default function Form() {
   const [{ members, visits, fd }, action] = useActionState(searchMembers, {
@@ -12,8 +12,6 @@ export default function Form() {
     visits: [],
     fd: new FormData(),
   })
-
-  console.log(members)
 
   return (
     <>
@@ -45,7 +43,7 @@ export default function Form() {
         <Pending />
       </form>
 
-      <div className="mt-4 grid gap-4 lg:grid-cols-2">
+      <div className="mt-4 grid gap-4 md:grid-cols-2">
         {members.map((member: any) => {
           return (
             <Link

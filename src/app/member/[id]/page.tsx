@@ -1,13 +1,15 @@
+import Pending from "@/components/Pending"
 import { db } from "@/lib/firebase"
 import { cap } from "@/utils/client"
 import { protect } from "@/utils/server"
 import {
-  getDoc,
-  doc,
   addDoc,
   collection,
+  doc,
+  getDoc,
   getDocs,
   query,
+  updateDoc,
   where,
 } from "firebase/firestore"
 import { notFound, redirect } from "next/navigation"
@@ -30,6 +32,7 @@ export default async function Member({ params }: Props) {
     nameFather,
     nameGrandfather,
     mobileNumber,
+    comments,
   } = member.data()!
 
   const visits = await getDocs(
@@ -70,6 +73,24 @@ export default async function Member({ params }: Props) {
             Sign In
           </button>
         )}
+
+        <form
+          action={async (fd) => {
+            "use server"
+
+            await updateDoc(doc(db, "members", id), {
+              comments: fd.get("comments"),
+            })
+          }}
+          className="mt-8 flex flex-col gap-2"
+        >
+          <textarea
+            name="comments"
+            defaultValue={comments}
+            className="input h-40 text-xl"
+          />
+          <Pending />
+        </form>
       </div>
     </>
   )
