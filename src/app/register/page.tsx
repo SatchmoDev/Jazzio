@@ -254,6 +254,7 @@ export default function Register() {
               "Wollo University",
               "Yekatit 12 Hospital Medical College",
               "Zero One Zero One",
+              "Fu Fut Coffee",
             ]
               .sort((a, b) => (a.toLowerCase() > b.toLowerCase() ? 1 : -1))
               .map((org) => (
