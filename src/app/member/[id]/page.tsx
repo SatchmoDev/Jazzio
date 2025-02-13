@@ -1,4 +1,3 @@
-import Pending from "@/components/Pending"
 import { db } from "@/lib/firebase"
 import { cap } from "@/utils/client"
 import { protect } from "@/utils/server"
@@ -51,7 +50,7 @@ export default async function Member({ params }: Props) {
         {cap(nameFirst)} {cap(nameFather)} {cap(nameGrandfather)}
       </h1>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-3">
         <p className="input text-xl">
           {idType}: {idNumber}
         </p>
@@ -59,45 +58,48 @@ export default async function Member({ params }: Props) {
         <p className="input text-xl">Mobile: {mobileNumber}</p>
         <p className="input text-xl">Date of Birth: {dateOfBirth}</p>
 
-        {visits.empty && (
-          <button
-            onClick={async () => {
-              "use server"
+        <button
+          onClick={async () => {
+            "use server"
 
+            if (visits.empty) {
               await addDoc(collection(db, "visits"), {
                 member: id,
                 timestamp: Date.now(),
               })
+            }
 
-              redirect("/search")
-            }}
-            className="button"
-          >
-            Sign In
-          </button>
-        )}
+            redirect("/search")
+          }}
+          className="button h-20 text-xl"
+        >
+          Sign In
+        </button>
       </div>
 
       <form
         action={async (fd) => {
           "use server"
 
-          await updateDoc(doc(db, "members", id), {
-            comments: fd.get("comments"),
-          })
+          const nc = (fd.get("comments") as string).trim()
 
-          revalidatePath("/member/" + id)
+          if (nc !== comments) {
+            await updateDoc(doc(db, "members", id), { comments: nc })
+            revalidatePath("/member/" + id)
+          }
         }}
-        className="mt-8 flex flex-col gap-2"
+        className="mt-3 flex flex-col gap-3"
       >
         <textarea
           name="comments"
           defaultValue={comments}
           placeholder="Comments"
-          className="input h-40 text-xl"
+          className="input border-secondary h-40 text-xl"
         />
 
-        <Pending />
+        <button className="button bg-secondary h-12 text-lg">
+          Submit Comment
+        </button>
       </form>
     </>
   )

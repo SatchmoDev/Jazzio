@@ -48,7 +48,7 @@ export default async function Day({ params }: Props) {
       </h1>
 
       <p>Attendance: {members.length}</p>
-      <ol className="list-decimal">
+      <ol className="mt-2 ml-4 list-decimal">
         {members.map((member) => {
           const { nameFirst, nameFather, nameGrandfather } = member.data()!
 
