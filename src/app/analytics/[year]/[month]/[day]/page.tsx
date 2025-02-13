@@ -50,12 +50,19 @@ export default async function Day({ params }: Props) {
       <p>Attendance: {members.length}</p>
       <ol className="mt-2 ml-4 list-decimal">
         {members.map((member) => {
-          const { nameFirst, nameFather, nameGrandfather } = member.data()!
+          const {
+            nameFirst,
+            nameFather,
+            nameGrandfather,
+            email,
+            mobileNumber,
+          } = member.data()!
 
           return (
             <li key={member.id}>
               <Link href={"/member/" + member.id}>
-                {cap(nameFirst)} {cap(nameFather)} {cap(nameGrandfather)}
+                {cap(nameFirst)} {cap(nameFather)} {cap(nameGrandfather)},{" "}
+                {email}, {mobileNumber}
               </Link>
             </li>
           )
