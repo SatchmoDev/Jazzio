@@ -50,13 +50,13 @@ export default async function Member({ params }: Props) {
         {cap(nameFirst)} {cap(nameFather)} {cap(nameGrandfather)}
       </h1>
 
-      <div className="flex flex-col gap-3">
-        <p className="input text-xl">
+      <div className="flex flex-col gap-3 text-lg">
+        <p className="input">
           {idType}: {idNumber}
         </p>
 
-        <p className="input text-xl">Mobile: {mobileNumber}</p>
-        <p className="input text-xl">Date of Birth: {dateOfBirth}</p>
+        <p className="input">Mobile Number: {mobileNumber}</p>
+        <p className="input">Date of Birth: {dateOfBirth}</p>
 
         <button
           onClick={async () => {
@@ -71,7 +71,7 @@ export default async function Member({ params }: Props) {
 
             redirect("/search")
           }}
-          className="button h-20 text-xl"
+          className="button h-18 text-xl"
         >
           Sign In
         </button>
@@ -94,10 +94,10 @@ export default async function Member({ params }: Props) {
           name="comments"
           defaultValue={comments}
           placeholder="Comments"
-          className="input border-secondary h-40 text-xl"
+          className="input border-secondary h-42 text-lg"
         />
 
-        <button className="button bg-secondary h-12 text-lg">
+        <button className="button bg-secondary h-18 text-xl">
           Submit Comment
         </button>
       </form>
