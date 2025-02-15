@@ -220,6 +220,7 @@ export default function Register() {
               "Meskaye Hizunan Medhane Alem Monastery High School",
               "Microlink Information Technology College",
               "Mieraf Academy",
+              "National Aviation College",
               "Nativity Girls Catholic School",
               "Nazareth School",
               "New English Private School",
