@@ -1,5 +1,6 @@
 # Jazzio
-### A bilingual (English/Amharic) registration form for Satchmo American Center membership, access control, and analytics.
+### A bilingual (English/Amharic) system for membership, access control, and analytics.
+#### Satchmo American Center, US Embassy Addis Ababa, Ethiopia
 
 ## Github
 [https://github.com/SatchmoDev/Jazzio](https://github.com/SatchmoDev/Jazzio)
