@@ -20,13 +20,14 @@ export const registerMember = async (state: any, fd: FormData) => {
   const checked = checker.run({ email })
 
   const clean = {
+    ...(data.title && { title: data.title }),
     nameFirst: data.nameFirst.toLowerCase().trim(),
     nameFather: data.nameFather.toLowerCase().trim(),
     nameGrandfather: data.nameGrandfather.toLowerCase().trim(),
     mobileNumber: data.mobileNumber,
     email: checked ? checked.full : email,
     dateOfBirth: data.dateOfBirth,
-    gender: data.gender,
+    sex: data.sex,
     organization: data.customOrganization || data.organization,
     idType: data.idType,
     idNumber: data.idNumber,

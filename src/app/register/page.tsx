@@ -37,6 +37,21 @@ export default function Register() {
         </div>
       ) : (
         <form action={action} className="flex flex-col">
+          <label htmlFor="title" className="font-semibold">
+            Title (ርዕስ)
+          </label>
+          <select
+            name="title"
+            id="title"
+            defaultValue=""
+            className="input mb-3 h-11"
+          >
+            <option disabled></option>
+            <option>Mr</option>
+            <option>Ms</option>
+            <option>Dr</option>
+          </select>
+
           <label htmlFor="nameFirst" className="font-semibold">
             First Name (ስም) <Asterisk />
           </label>
@@ -115,12 +130,12 @@ export default function Register() {
             className="input mb-3"
           />
 
-          <label htmlFor="gender" className="font-semibold">
-            Gender (ጾታ) <Asterisk />
+          <label htmlFor="sex" className="font-semibold">
+            Sex (ጾታ) <Asterisk />
           </label>
           <select
-            name="gender"
-            id="gender"
+            name="sex"
+            id="sex"
             defaultValue=""
             required
             className="input mb-3 h-11"
@@ -162,7 +177,7 @@ export default function Register() {
               "Bahir Dar University",
               "Bethel Medical College",
               "Bisrate Gebriel School",
-            "BITS College",
+              "BITS College",
               "Black Lion Secondary School",
               "Bole Kale Hiwot",
               "Bole Senior Secondary School",
@@ -172,7 +187,7 @@ export default function Register() {
               "Commercial Bank of Ethiopia",
               "Cordova Academy",
               "Co(X)ist",
-            "CPU Collage",
+              "CPU Collage",
               "Cruise School",
               "Dagmawi Menelik Secondary School",
               "Debre Birhan University",
@@ -181,8 +196,8 @@ export default function Register() {
               "Don Bosco Catholic High School",
               "Efuyegela Technology PLC",
               "Ethiopian Airlines",
-            "Ethiopian Broadcasting Corporation",
-            "Ethiopian Civil Service University",
+              "Ethiopian Broadcasting Corporation",
+              "Ethiopian Civil Service University",
               "Ethio National School",
               "Ethio Parents School",
               "Ethio Telecom",

@@ -28,6 +28,7 @@ export default async function Member({ params }: Props) {
   const {
     idType,
     idNumber,
+    title,
     nameFirst,
     nameFather,
     nameGrandfather,
@@ -47,7 +48,8 @@ export default async function Member({ params }: Props) {
   return (
     <>
       <h1>
-        {cap(nameFirst)} {cap(nameFather)} {cap(nameGrandfather)}
+        {title && title + "."} {cap(nameFirst)} {cap(nameFather)}{" "}
+        {cap(nameGrandfather)}
       </h1>
 
       <div className="flex flex-col gap-3 text-lg">
