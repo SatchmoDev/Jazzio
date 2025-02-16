@@ -1,9 +1,10 @@
 # Jazzio
+### A bilingual (English/Amharic) registration form for Satchmo American Center membership, access control, and analytics.
 
 ## Github
 [https://github.com/SatchmoDev/Jazzio](https://github.com/SatchmoDev/Jazzio)
 
-This code represents a bilingual (English/Amharic) registration form for an American Center membership. Features:
+### Features:
 
 Form validation for Ethiopian-specific formats (phone numbers, names)
 
