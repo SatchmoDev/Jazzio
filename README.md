@@ -1,7 +1,7 @@
 # Jazzio
 
 ## Github
-(https://github.com/SatchmoDev/Jazzio)
+[https://github.com/SatchmoDev/Jazzio](https://github.com/SatchmoDev/Jazzio)
 
 This code represents a bilingual (English/Amharic) registration form for an American Center membership. Features:
 
