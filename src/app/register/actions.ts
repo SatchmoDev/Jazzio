@@ -17,7 +17,10 @@ export const registerMember = async (state: any, fd: FormData) => {
   if (existing.docs.length) return existing.docs[0].id
 
   const email = data.email.toLowerCase()
-  const checked = checker.run({ email })
+  const checked = checker.run({
+    email,
+    topLevelDomains: [...checker.POPULAR_TLDS, "edu.et"],
+  })
 
   const clean = {
     ...(data.title && { title: data.title }),

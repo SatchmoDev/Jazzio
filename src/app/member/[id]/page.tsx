@@ -33,6 +33,7 @@ export default async function Member({ params }: Props) {
     nameFather,
     nameGrandfather,
     mobileNumber,
+    organization,
     dateOfBirth,
     comments,
   } = member.data()!
@@ -58,6 +59,7 @@ export default async function Member({ params }: Props) {
         </p>
 
         <p className="input">Mobile Number: {mobileNumber}</p>
+        <p className="input">Organization: {organization}</p>
         <p className="input">Date of Birth: {dateOfBirth}</p>
 
         <button
