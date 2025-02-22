@@ -260,7 +260,7 @@ export default function Register() {
               "Renaissance School",
               "Rift Valley University",
               "Safari Academy",
-              "Saint John Baptist De La Salle Catholic School",
+              "St John Baptist De La Salle Catholic School",
               "Sante Medical College",
               "School Of Indiana",
               "School Of Tomorrow",
