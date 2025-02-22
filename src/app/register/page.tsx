@@ -98,7 +98,6 @@ export default function Register() {
             required
             pattern="[97]\d{8}"
             className="input mb-3"
-            inputmode="numeric"
           />
 
           <label htmlFor="email" className="font-semibold">
