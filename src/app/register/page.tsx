@@ -49,7 +49,10 @@ export default function Register() {
             <option disabled></option>
             <option>Mr</option>
             <option>Ms</option>
+            <option>Mrs</option>
             <option>Dr</option>
+            <option>Prof</option>
+            <option>Ato</option>
           </select>
 
           <label htmlFor="nameFirst" className="font-semibold">
