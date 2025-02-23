@@ -96,7 +96,7 @@ export default function Register() {
             name="mobileNumber"
             id="mobileNumber"
             required
-            type="number"
+            type="text"
             pattern="^[97]\d{8}$"
             className="input mb-3"
           />
