@@ -88,7 +88,7 @@ export default function Register() {
             className="input mb-3"
           />
 
-{/*           <label htmlFor="mobileNumber" className="font-semibold">
+          <label htmlFor="mobileNumber" className="font-semibold">
             Mobile Number (ስልክ ቁጥር) <Asterisk />
           </label>
           <p>Nine digits. Do not begin with zero.</p>
@@ -99,30 +99,8 @@ export default function Register() {
             type="text"
             pattern="^[97]\d{8}$"
             className="input mb-3"
-          /> */}
+          />
 
-<label htmlFor="mobileNumber" className="font-semibold">
-            Mobile Number (ስልክ ቁጥር) <Asterisk />
-          </label>
-          <p>Nine digits. Do not begin with zero.</p>
-<input
-  name="mobileNumber"
-  id="mobileNumber"
-  required
-  type="number"
-  min="700000000"
-  max="999999999"
-  className="input mb-3"
-  onInput={(e) => {
-    const input = e.target as HTMLInputElement;
-    const value = input.value;
-    if (!/^[97]\d{8}$/.test(value)) {
-      input.setCustomValidity("Mobile number must start with 7 or 9 and be exactly 9 digits.");
-    } else {
-      input.setCustomValidity("");
-    }
-  }}
-/>
           
           <label htmlFor="email" className="font-semibold">
             Email (ኢሜይል) <Asterisk />
