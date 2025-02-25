@@ -64,6 +64,7 @@ export default function Register() {
             required
             pattern="^[A-Za-z .-'/]+$"
             className="input mb-3"
+            autoComplete="off"
           />
 
           <label htmlFor="nameFather" className="font-semibold">
@@ -75,6 +76,7 @@ export default function Register() {
             required
             pattern="^[A-Za-z .-'/]+$"
             className="input mb-3"
+            autoComplete="off"
           />
 
           <label htmlFor="nameGrandfather" className="font-semibold">
@@ -86,6 +88,7 @@ export default function Register() {
             required
             pattern="^[A-Za-z .-'/]+$"
             className="input mb-3"
+            autoComplete="off"
           />
 
           <label htmlFor="mobileNumber" className="font-semibold">
@@ -101,7 +104,6 @@ export default function Register() {
             className="input mb-3"
           />
 
-          
           <label htmlFor="email" className="font-semibold">
             Email (ኢሜይል) <Asterisk />
           </label>

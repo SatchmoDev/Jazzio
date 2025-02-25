@@ -9,7 +9,6 @@ import {
   query,
   where,
 } from "firebase/firestore"
-import Link from "next/link"
 
 interface Props {
   params: Promise<{ year: string; month: string; day: string }>
@@ -48,7 +47,7 @@ export default async function Day({ params }: Props) {
       </h1>
 
       <p>Attendance: {members.length}</p>
-      <ol className="mt-2 ml-4 list-decimal">
+      <div className="mt-4">
         {members.map((member) => {
           const {
             nameFirst,
@@ -59,15 +58,17 @@ export default async function Day({ params }: Props) {
           } = member.data()!
 
           return (
-            <li key={member.id}>
-              <Link href={"/member/" + member.id}>
-                {cap(nameFirst)} {cap(nameFather)} {cap(nameGrandfather)},{" "}
-                {email}, {mobileNumber}
-              </Link>
-            </li>
+            <div className="grid grid-cols-3" key={member.id}>
+              <p>
+                {cap(nameFirst)} {cap(nameFather)} {cap(nameGrandfather)}
+              </p>
+
+              <p>{email}</p>
+              <p>{mobileNumber}</p>
+            </div>
           )
         })}
-      </ol>
+      </div>
     </>
   )
 }

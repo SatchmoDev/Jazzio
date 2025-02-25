@@ -12,6 +12,7 @@ import {
   where,
 } from "firebase/firestore"
 import { revalidatePath } from "next/cache"
+import Link from "next/link"
 import { notFound, redirect } from "next/navigation"
 
 interface Props {
@@ -62,23 +63,32 @@ export default async function Member({ params }: Props) {
         <p className="input">Organization: {organization}</p>
         <p className="input">Date of Birth: {dateOfBirth}</p>
 
-        <button
-          onClick={async () => {
-            "use server"
+        <div className="flex h-18 gap-4 text-xl">
+          <Link
+            href="/search"
+            className="button flex w-full items-center justify-center bg-green-500"
+          >
+            Search
+          </Link>
 
-            if (visits.empty) {
-              await addDoc(collection(db, "visits"), {
-                member: id,
-                timestamp: Date.now(),
-              })
-            }
+          <button
+            onClick={async () => {
+              "use server"
 
-            redirect("/search")
-          }}
-          className="button h-18 text-xl"
-        >
-          Sign In
-        </button>
+              if (visits.empty) {
+                await addDoc(collection(db, "visits"), {
+                  member: id,
+                  timestamp: Date.now(),
+                })
+              }
+
+              redirect("/search")
+            }}
+            className="button w-full"
+          >
+            Sign In
+          </button>
+        </div>
       </div>
 
       <form
