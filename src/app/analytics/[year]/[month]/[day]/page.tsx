@@ -47,7 +47,7 @@ export default async function Day({ params }: Props) {
       </h1>
 
       <p>Attendance: {members.length}</p>
-      <div className="mt-4">
+      <div className="mt-4 space-y-2 lg:space-y-0">
         {members.map((member) => {
           const {
             nameFirst,
@@ -58,7 +58,7 @@ export default async function Day({ params }: Props) {
           } = member.data()!
 
           return (
-            <div className="grid grid-cols-3" key={member.id}>
+            <div className="grid lg:grid-cols-3" key={member.id}>
               <p>
                 {cap(nameFirst)} {cap(nameFather)} {cap(nameGrandfather)}
               </p>
