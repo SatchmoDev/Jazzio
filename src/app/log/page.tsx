@@ -6,7 +6,7 @@ export default function Analytics() {
   const today = new Date()
 
   redirect(
-    "/analytics/" +
+    "/log/" +
       today.getFullYear() +
       "/" +
       (today.getMonth() + 1) +
