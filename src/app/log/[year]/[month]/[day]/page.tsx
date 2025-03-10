@@ -9,6 +9,7 @@ import {
   query,
   where,
 } from "firebase/firestore"
+import Link from "next/link"
 
 interface Props {
   params: Promise<{ year: string; month: string; day: string }>
@@ -29,9 +30,9 @@ export default async function Day({ params }: Props) {
   )
 
   const members = await Promise.all(
-    visits.docs.map((visit) => {
+    visits.docs.map(async (visit) => {
       const data = visit.data()
-      return getDoc(doc(db, "members", data.member))
+      return { member: await getDoc(doc(db, "members", data.member)), visit }
     }),
   )
 
@@ -47,8 +48,8 @@ export default async function Day({ params }: Props) {
       </h1>
 
       <p>Attendance: {members.length}</p>
-      <div className="mt-4 space-y-2 lg:space-y-0">
-        {members.map((member) => {
+      <div className="mt-4 space-y-4 lg:space-y-0">
+        {members.map(({ member, visit }) => {
           const {
             nameFirst,
             nameFather,
@@ -58,13 +59,22 @@ export default async function Day({ params }: Props) {
           } = member.data()!
 
           return (
-            <div className="grid lg:grid-cols-3" key={member.id}>
-              <p>
+            <div className="grid lg:grid-cols-4" key={member.id}>
+              <Link href={"/member/" + member.id} className="w-fit">
                 {cap(nameFirst)} {cap(nameFather)} {cap(nameGrandfather)}
-              </p>
+              </Link>
 
               <p>{email}</p>
               <p>{mobileNumber}</p>
+
+              <p>
+                {Intl.DateTimeFormat("en-us", {
+                  hour: "numeric",
+                  minute: "numeric",
+                  timeZone: "Africa/Nairobi",
+                  hourCycle: "h24",
+                }).format(visit.data().timestamp)}
+              </p>
             </div>
           )
         })}
