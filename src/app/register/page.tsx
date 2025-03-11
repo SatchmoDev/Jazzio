@@ -295,6 +295,7 @@ export default function Register() {
               "School Of Tomorrow",
               "Seattle Academy",
               "Self Employed",
+              "Shega Media and Technology PLC",
               "Sosina School",
               "Southwest Academy",
               "Space Science and Geospatial Institute",
