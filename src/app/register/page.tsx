@@ -52,7 +52,7 @@ export default function Register() {
         <form action={action} className="flex flex-col">
           {/* Title dropdown */}
           <label htmlFor="title" className="font-semibold">
-            Title (ርዕስ) // Label text in English and Amharic
+            Title (ርዕስ)
           </label>
           <select
             name="title" // Name for form data
