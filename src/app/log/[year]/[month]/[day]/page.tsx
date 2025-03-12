@@ -64,6 +64,7 @@ export default async function Day({ params }: Props) {
               <Link href={"/member/" + member.id} className="w-fit">
                 {cap(nameFirst)} {cap(nameFather)} {cap(nameGrandfather)}
               </Link>
+              
               <p>{cap(organization)}</p>
               <p>{email}</p>
               <p>{mobileNumber}</p>
