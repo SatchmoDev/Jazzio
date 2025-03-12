@@ -54,16 +54,17 @@ export default async function Day({ params }: Props) {
             nameFirst,
             nameFather,
             nameGrandfather,
+            organization,
             email,
             mobileNumber,
           } = member.data()!
 
           return (
-            <div className="grid lg:grid-cols-4" key={member.id}>
+            <div className="grid lg:grid-cols-5" key={member.id}>
               <Link href={"/member/" + member.id} className="w-fit">
                 {cap(nameFirst)} {cap(nameFather)} {cap(nameGrandfather)}
               </Link>
-
+              <p>{organization}</p>
               <p>{email}</p>
               <p>{mobileNumber}</p>
 
