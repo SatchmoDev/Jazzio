@@ -289,6 +289,7 @@ export default function Register() {
               "Rehoboth School",
               "Renaissance School",
               "Rift Valley University",
+              "RIM Architects",
               "Safari Academy",
               "Sante Medical College",
               "School Of Indiana",
@@ -318,11 +319,12 @@ export default function Register() {
               "Wolkite University",
               "Wollo University",
               "xHub Addis",
+              "Yeka Abado Secondary School",
               "Yekatit 12 Hospital Medical College",
               "Yekatit 23 Secondary School",
               "YeneHealth",
               "Zero One Zero One",
-             "Zias Design International",
+             "ZIAS Architecture and Engineering",
             ]
               .sort((a, b) => (a.toLowerCase() > b.toLowerCase() ? 1 : -1)) // Sorts A-Z
               .map((org) => (
