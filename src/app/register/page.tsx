@@ -225,6 +225,7 @@ export default function Register() {
               "Efuyegela Technology PLC",
               "Ethiopian Airlines",
               "Ethiopian Broadcasting Corporation",
+              "Ethiopian Business Advisory Service Providers Assoc",
               "Ethiopian Civil Service University",
               "Ethio National School",
               "Ethio Parents School",
