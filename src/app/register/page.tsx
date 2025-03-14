@@ -217,6 +217,7 @@ export default function Register() {
               "CPU Collage",
               "Cruise School",
               "Dagmawi Menelik Secondary School",
+              "Dandii Boru School",
               "Debre Birhan University",
               "Debre Tabor University",
               "Dejazmach Geresu Secondary School",
@@ -324,7 +325,7 @@ export default function Register() {
               "Yekatit 23 Secondary School",
               "YeneHealth",
               "Zero One Zero One",
-             "ZIAS Architecture and Engineering",
+              "ZIAS Architecture and Engineering",
             ]
               .sort((a, b) => (a.toLowerCase() > b.toLowerCase() ? 1 : -1)) // Sorts A-Z
               .map((org) => (
