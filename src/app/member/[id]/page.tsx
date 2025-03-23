@@ -68,7 +68,7 @@ export default async function Member({ params }: Props) {
             href="/search"
             className="button flex w-full items-center justify-center bg-green-500"
           >
-            Search
+            Back to Search
           </Link>
 
           <button
