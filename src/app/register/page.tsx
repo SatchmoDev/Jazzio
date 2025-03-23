@@ -189,6 +189,7 @@ export default function Register() {
               "Addis Ababa Institute of Technology",
               "Addis Ababa Medical and Business College",
               "Addis Ababa Science and Technology University",
+            "Addis Ababa Tegbareid Polytechnic College",
               "Addis Ababa University",
               "Addis Ketema Secondary School",
               "Adigrat University",
