@@ -39,11 +39,12 @@ export default async function Member({ params }: Props) {
     comments,
   } = member.data()!
 
+  const now = Date.now() - 1000 * 60 * 60 * 5
   const visits = await getDocs(
     query(
       collection(db, "visits"),
       where("member", "==", member.id),
-      where("timestamp", ">=", Date.now() - 1000 * 60 * 60 * 5),
+      where("timestamp", ">=", now),
     ),
   )
 
@@ -74,6 +75,14 @@ export default async function Member({ params }: Props) {
           <button
             onClick={async () => {
               "use server"
+
+              const visits = await getDocs(
+                query(
+                  collection(db, "visits"),
+                  where("member", "==", member.id),
+                  where("timestamp", ">=", now),
+                ),
+              )
 
               if (visits.empty) {
                 await addDoc(collection(db, "visits"), {
