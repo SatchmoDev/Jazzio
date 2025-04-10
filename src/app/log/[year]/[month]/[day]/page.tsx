@@ -60,7 +60,7 @@ export default async function Day({ params }: Props) {
           } = member.data()!
 
           return (
-            <div className="">
+            <div className="" key={i}>
               <Link href={"/member/" + member.id}>
                 {cap(nameFirst)} {cap(nameFather)} {cap(nameGrandfather)}
               </Link>

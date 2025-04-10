@@ -1,3 +1,4 @@
+import Pending from "@/components/Pending"
 import { db } from "@/lib/firebase"
 import { cap } from "@/utils/client"
 import { protect } from "@/utils/server"
@@ -40,13 +41,6 @@ export default async function Member({ params }: Props) {
   } = member.data()!
 
   const now = Date.now() - 1000 * 60 * 60 * 5
-  const visits = await getDocs(
-    query(
-      collection(db, "visits"),
-      where("member", "==", member.id),
-      where("timestamp", ">=", now),
-    ),
-  )
 
   return (
     <>
@@ -72,8 +66,8 @@ export default async function Member({ params }: Props) {
             Back to Search
           </Link>
 
-          <button
-            onClick={async () => {
+          <form
+            action={async () => {
               "use server"
 
               const visits = await getDocs(
@@ -93,10 +87,10 @@ export default async function Member({ params }: Props) {
 
               redirect("/search")
             }}
-            className="button w-full"
+            className="w-full"
           >
-            Sign In
-          </button>
+            <Pending text="Sign In" />
+          </form>
         </div>
       </div>
 
