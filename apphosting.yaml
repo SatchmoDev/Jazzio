@@ -1,3 +1,0 @@
-env:
-  - variable: PRIVATE_KEY
-    secret: PRIVATE_KEY

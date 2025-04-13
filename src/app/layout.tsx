@@ -1,14 +1,19 @@
 import "@/styles/base.css"
 import { Metadata } from "next"
+import { Inter } from "next/font/google"
 import { ReactNode } from "react"
 
-export const metadata: Metadata = { title: "Jazzio" }
+const inter = Inter({ subsets: ["latin"] })
+
+export const metadata: Metadata = {
+  title: { default: "Jazzio", template: "%s | Jazzio" },
+}
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className="bg-background text-foreground">
-        <main className="mx-auto my-8 w-4/5">{children}</main>
+      <body className={"bg-background text-foreground " + inter.className}>
+        <main className="mx-auto w-7/8 lg:w-6/8 2xl:w-5/8">{children}</main>
       </body>
     </html>
   )
