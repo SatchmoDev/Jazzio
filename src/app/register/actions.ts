@@ -31,7 +31,7 @@ export const registerMember = async (state: any, fd: FormData) => {
     email: checked ? checked.full : email,
     dateOfBirth: data.dateOfBirth,
     sex: data.sex,
-    organization: data.customOrganization || data.organization,
+    organization: data.customOrganization.trim() || data.organization.trim(),
     idType: data.idType,
     idNumber: data.idNumber,
     joined: Date.now(),
