@@ -1,32 +1,3 @@
 # Jazzio
-### A bilingual (English/Amharic) system for membership, access control, and analytics.
-#### Satchmo American Center, US Embassy Addis Ababa, Ethiopia
 
-## Github
-[https://github.com/SatchmoDev/Jazzio](https://github.com/SatchmoDev/Jazzio)
-
-### Features:
-
-Form validation for Ethiopian-specific formats (phone numbers, names)
-
-Age restrictions (14-80 years)
-
-Comprehensive list of Ethiopian institutions
-
-QR code generation upon successful registration
-
-Required field indicators
-
-Mobile-responsive design using Tailwind CSS
-
-The component uses modern React practices with hooks for state management and conditional rendering to handle the registration flow.
-
-
-## To Do
-
-
-## Technologies
-
-- Next
-- Firebase
-- Tailwind
+Jazzio is a bilingual website that manages membership and entry for the Satchmo American Center. New visitors register through a detailed form that checks Ethiopian phone formats, enforces age limits, references local institutions, and produces a QR code linking to their profile. Guards sign in with a password to search members, record visits, and note comments. The system tracks who has checked in each day and displays attendance logs with visitor details and timestamps. Overall, the site streamlines registration and visit management while providing bilingual support for its users.
