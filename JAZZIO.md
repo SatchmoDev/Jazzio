@@ -2,7 +2,7 @@
 
 ## What is Jazzio?
 
-Jazzio is a web-based membership system for the Satchmo American Center in Ethiopia. It helps manage visitor registration, member check-ins, and daily attendance tracking. The system is bilingual (English and Amharic) to serve the local community effectively.The main goal is to streamline how new visitors register and how guards track who visits the center each day. Instead of paper forms and manual record-keeping, everything is digital and automatically organized.
+Jazzio is a web-based membership system for the Satchmo American Center in Ethiopia. It helps manage visitor registration, member check-ins, and daily attendance tracking. The system is bilingual (English and Amharic) to serve the local community effectively. The main goal is to streamline how new visitors register and how guards track who visits the center each day. Instead of paper forms and manual record-keeping, everything is digital and automatically organized.
 
 ## Who Uses It?
 
